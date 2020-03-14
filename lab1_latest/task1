@@ -6,7 +6,7 @@ index.txt:
 web_technologies.png:
   Content-Length: 335525
   Content-Type: image/png
-  Server: nginx/1.2.
+  Server: nginx/1.2.2
 
 water.mp4:
   Content-Length: 1137202
