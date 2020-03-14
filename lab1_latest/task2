@@ -1,0 +1,17 @@
+http://localhost/lw1/mysql_is_a_database_server.html:
+  Код ответа: 404 Not Found
+  Что означает: Сервер понял запрос, но не смог найти соответсвующий файл (ошибка). 
+  Решение: в папке lw1 создать файл mysql_is_a_database_server.html
+  
+http://localhost/lw1/nginx_is_fast_http_server.txt:
+  Код ответа: 200 ОК
+  Что означает: Запрос выполнен успешно (специальное поведение).
+  
+http://localhost/lw1/php_is_a_server_scripting_language.php:
+  Код ответа: 302 Found
+  Что означает: Запрошенный документ временно доступен по другому URL (специальное поведение).
+  
+http://localhost/lw1/javascript_is_a_client_side_language.php?how_to_work=hardly:
+  Код ответа: 400 Bad Request
+  Что означает: Сервер обнаружил в запросе клиента синтаксическую ошибку (ошибка).
+  Решение: необходимо в запросе заменить hardly на hard
