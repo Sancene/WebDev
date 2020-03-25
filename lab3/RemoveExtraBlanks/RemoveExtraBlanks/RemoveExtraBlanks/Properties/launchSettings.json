@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "RemoveExtraBlanks": {
+      "commandName": "Project",
+      "commandLineArgs": "hi.txt goodbye.txt"
+    }
+  }
+}
