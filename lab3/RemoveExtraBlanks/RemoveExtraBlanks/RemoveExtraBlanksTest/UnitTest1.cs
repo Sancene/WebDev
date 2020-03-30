@@ -13,8 +13,7 @@ namespace RemoveExtraBlanksTest
             string[] wrong1 = new string[0] {  };
 
             //act
-            int min;
-            min = Program.Main(wrong1);
+            int min = Program.Main(wrong1);
 
             //assert
             Assert.AreEqual(1, min);
@@ -33,21 +32,42 @@ namespace RemoveExtraBlanksTest
             Assert.AreEqual(1, min);
         }
         [TestMethod]
-        public void CorrectWork()
+        public void FileWithExtraSpacesAndTabs()
         {
             //arrange
             string[] wrong1 = new string[2] { "Tests/input1.txt", "Tests/output.txt" };
-            
+
             //act
-            int min;
-            min = Program.Main(wrong1);
+            Program.Main(wrong1);
             string[] correctoutput = System.IO.File.ReadAllLines("Tests/correctoutput1.txt");
             string[] output = System.IO.File.ReadAllLines("Tests/output.txt");
             bool correct = true;
 
-            for(int i = 0; i < output.Length; i++)
+            for (int i = 0; i < output.Length; i++)
             {
-                if(output[i] != correctoutput[i])
+                if (output[i] != correctoutput[i])
+                    correct = false;
+            }
+
+            //assert
+            Assert.IsTrue(correct);
+        }
+        [TestMethod]
+        public void StringWithExtraSpaces()
+        {
+            //arrange
+            string[] wrong1 = new string[2] { "Tests/input2.txt", "Tests/output.txt" };
+
+            //act
+            int min;
+            min = Program.Main(wrong1);
+            string[] correctoutput = System.IO.File.ReadAllLines("Tests/correctoutput2.txt");
+            string[] output = System.IO.File.ReadAllLines("Tests/output.txt");
+            bool correct = true;
+
+            for (int i = 0; i < output.Length; i++)
+            {
+                if (output[i] != correctoutput[i])
                     correct = false;
             }
 

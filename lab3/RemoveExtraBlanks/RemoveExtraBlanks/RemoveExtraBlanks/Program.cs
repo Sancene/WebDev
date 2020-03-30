@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace RemoveExtraBlanks
 {
@@ -21,9 +22,9 @@ namespace RemoveExtraBlanks
             StreamWriter output = new StreamWriter(args[1]);
             foreach (string line in input)
             {
-                string stringNoSpaces = String.Join(" ", line.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-                string stringNoTab = String.Join("\t", stringNoSpaces.Split(new string[] { "\t" }, StringSplitOptions.RemoveEmptyEntries));
-                output.WriteLine(stringNoTab.Trim());
+                Regex regex = new Regex(@"[ , \t]+");
+                string line2 = regex.Replace(line, " ");
+                output.WriteLine(line2.Trim());
             }
             output.Close();
             return 0;
