@@ -9,35 +9,27 @@ namespace RemoveExtraBlanksTest
         [TestMethod]
         public void NoArguments()
         {
-            //arrange
             string[] wrong1 = new string[0] {  };
 
-            //act
             int min = Program.Main(wrong1);
 
-            //assert
             Assert.AreEqual(1, min);
         }
         [TestMethod]
         public void TooManyArguments()
         {
-            //arrange
             string[] wrong1 = new string[3] { "input.txt", "output.txt", "input2.txt"};
 
-            //act
             int min;
             min = Program.Main(wrong1);
 
-            //assert
             Assert.AreEqual(1, min);
         }
         [TestMethod]
         public void FileWithExtraSpacesAndTabs()
         {
-            //arrange
             string[] wrong1 = new string[2] { "Tests/input1.txt", "Tests/output.txt" };
 
-            //act
             Program.Main(wrong1);
             string[] correctoutput = System.IO.File.ReadAllLines("Tests/correctoutput1.txt");
             string[] output = System.IO.File.ReadAllLines("Tests/output.txt");
@@ -49,30 +41,44 @@ namespace RemoveExtraBlanksTest
                     correct = false;
             }
 
-            //assert
             Assert.IsTrue(correct);
         }
+
         [TestMethod]
-        public void StringWithExtraSpaces()
+        public void RemoveExtraBlanksEmptyString()
         {
-            //arrange
-            string[] wrong1 = new string[2] { "Tests/input2.txt", "Tests/output.txt" };
+            //Arrange
+            string emptyString = "";
 
-            //act
-            int min;
-            min = Program.Main(wrong1);
-            string[] correctoutput = System.IO.File.ReadAllLines("Tests/correctoutput2.txt");
-            string[] output = System.IO.File.ReadAllLines("Tests/output.txt");
-            bool correct = true;
+            //Act
+            emptyString = Program.RemoveExtraBlanks(emptyString);
 
-            for (int i = 0; i < output.Length; i++)
-            {
-                if (output[i] != correctoutput[i])
-                    correct = false;
-            }
+            //Assert
+            Assert.AreEqual(emptyString, "");
+        }
+        [TestMethod]
+        public void RemoveExtraBlanksStringWithExtraBlanks()
+        {
+            //Arrange
+            string testString = "  1    3\t\t4 5         ";
 
-            //assert
-            Assert.IsTrue(correct);
+            //Act
+            testString = Program.RemoveExtraBlanks(testString);
+
+            //Assert
+            Assert.AreEqual(testString, "1 3\t4 5");
+        }
+        [TestMethod]
+        public void RemoveExtraBlanksStringWithOnlyBlanks()
+        {
+            //Arrange
+            string testString = "                            ";
+
+            //Act
+            testString = Program.RemoveExtraBlanks(testString);
+
+            //Assert
+            Assert.AreEqual(testString, "");
         }
     }
 }

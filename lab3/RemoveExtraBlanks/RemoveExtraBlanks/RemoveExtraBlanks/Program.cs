@@ -6,6 +6,29 @@ namespace RemoveExtraBlanks
 {
     public class Program
     {
+        public static string RemoveExtraBlanks(string str)
+        {
+            string withoutExtraBlanks = "";
+            bool blankFlag = false;
+            str = str.Trim();
+            for (int i = 0; i < str.Length; ++i)
+            {
+                if (str[i] != ' ' && str[i] != '\t')
+                {
+                    withoutExtraBlanks += str[i];
+                    blankFlag = false;
+                }
+                else
+                {
+                    if (!blankFlag)
+                    {
+                        withoutExtraBlanks += str[i];
+                        blankFlag = true;
+                    }
+                }
+            }
+            return withoutExtraBlanks;
+        }
         public static int Main(string[] args)
         {
             if (args.Length != 2)
@@ -22,9 +45,7 @@ namespace RemoveExtraBlanks
             StreamWriter output = new StreamWriter(args[1]);
             foreach (string line in input)
             {
-                Regex regex = new Regex(@"[ , \t]+");
-                string line2 = regex.Replace(line, " ");
-                output.WriteLine(line2.Trim());
+                output.WriteLine(RemoveExtraBlanks(line));
             }
             output.Close();
             return 0;
