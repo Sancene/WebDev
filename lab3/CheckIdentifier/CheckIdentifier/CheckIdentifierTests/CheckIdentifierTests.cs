@@ -97,5 +97,53 @@ namespace CheckIdentifierTests
             //assert
             Assert.AreEqual(1, min);
         }
+        [TestMethod]
+        public void IsLetter()
+        {
+            //arrange
+            char ch = 'A';
+
+            //act
+            bool right = Program.IsEnglishLetter(ch);
+
+            //assert
+            Assert.IsTrue(right);
+        }
+        [TestMethod]
+        public void IsNotLetter()
+        {
+            //arrange
+            char ch = '4';
+
+            //act
+            bool right = Program.IsEnglishLetter(ch);
+
+            //assert
+            Assert.IsFalse(right);
+        }
+        [TestMethod]
+        public void IsDigit()
+        {
+            //arrange
+            char ch = '4';
+
+            //act
+            bool right = Program.IsDigit(ch);
+
+            //assert
+            Assert.IsTrue(right);
+        }
+        [TestMethod]
+        public void IsNotDigit()
+        {
+            //arrange
+            char ch = 'A';
+
+            //act
+            bool right = Program.IsDigit(ch);
+
+            //assert
+            Assert.IsFalse(right);
+        }
     }
 }
