@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace RemoveDuplicates
 {
@@ -15,23 +15,7 @@ namespace RemoveDuplicates
             }
 
             string inputString = args[0];
-            HashSet<char> uniqueSet = new HashSet<char>();
-            int i = 0;
-
-            while (i <= inputString.Length - 1)
-            {
-                char ch = inputString[i];
-                if (uniqueSet.Contains(ch))
-                {
-                    inputString = inputString.Remove(i, 1);
-                }
-                else
-                {
-                    uniqueSet.Add(ch);
-                    i++;
-                }
-            }
-
+            inputString = new string(inputString.Distinct().ToArray());
             Console.WriteLine(inputString);
 
             return 0;
