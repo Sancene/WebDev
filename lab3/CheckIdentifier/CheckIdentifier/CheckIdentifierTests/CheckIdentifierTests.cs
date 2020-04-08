@@ -10,92 +10,70 @@ namespace CheckIdentifierTests
         public void NumberInTheBeggining()
         {
             //arrange
-            string[] wrong1 = new string[1] { "1asdf" };
+            string identifier = "1asdf";
 
             //act
-            int min;
-            min = Program.Main(wrong1);
+            bool result;
+            result = Program.CheckIdentifier(identifier);
 
             //assert
-            Assert.AreEqual(1, min);
+            Assert.IsFalse(result);
         }
         [TestMethod]
         public void IncorrectSymbol()
         {
             //arrange
-            string[] wrong1 = new string[1] { "as*df" };
+            string identifier = "as*df";
 
             //act
-            int min;
-            min = Program.Main(wrong1);
+            bool result;
+            result = Program.CheckIdentifier(identifier);
 
             //assert
-            Assert.AreEqual(1, min);
+            Assert.IsFalse(result);
         }
         [TestMethod]
         public void NormalWork()
         {
             //arrange
-            string[] wrong1 = new string[1] { "asdf321" };
+            string identifier = "asdf321";
 
             //act
-            int min;
-            min = Program.Main(wrong1);
+            bool result;
+            result = Program.CheckIdentifier(identifier);
 
             //assert
-            Assert.AreEqual(0, min);
-        }
-        [TestMethod]
-        public void IncorrectArgumentsMore()
-        {
-            //arrange
-            string[] wrong1 = new string[2] { "asdf321", "123"};
-
-            //act
-            int min;
-            min = Program.Main(wrong1);
-
-            //assert
-            Assert.AreEqual(1, min);
-        }
-        [TestMethod]
-        public void IncorrectArgumentsLess()
-        {
-            //arrange
-            string[] wrong1 = new string[0] {};
-
-            //act
-            int min;
-            min = Program.Main(wrong1);
-
-            //assert
-            Assert.AreEqual(1, min);
-        }
-        [TestMethod]
-        public void WrongSymbolStillLetter()
-        {
-            //arrange
-            string[] wrong1 = new string[1] { "Привет" };
-
-            //act
-            int min;
-            min = Program.Main(wrong1);
-
-            //assert
-            Assert.AreEqual(1, min);
+            Assert.IsTrue(result);
         }
         [TestMethod]
         public void EmptyString()
         {
             //arrange
-            string[] wrong1 = new string[1] { "" };
+            string identifier = "";
 
             //act
-            int min;
-            min = Program.Main(wrong1);
+            bool result;
+            result = Program.CheckIdentifier(identifier);
 
             //assert
-            Assert.AreEqual(1, min);
+            Assert.IsFalse(result);
+        }
+    }
+    [TestClass]
+    public class IsEnglishLetterTests
+    {
+        [TestMethod]
+        public void WrongSymbolStillLetter()
+        {
+            //arrange
+            char character = 'П';
+
+            //act
+            bool result;
+            result = Program.IsEnglishLetter(character);
+
+            //assert
+            Assert.IsFalse(result);
         }
         [TestMethod]
         public void IsLetter()
@@ -104,10 +82,10 @@ namespace CheckIdentifierTests
             char ch = 'A';
 
             //act
-            bool right = Program.IsEnglishLetter(ch);
+            bool result = Program.IsEnglishLetter(ch);
 
             //assert
-            Assert.IsTrue(right);
+            Assert.IsTrue(result);
         }
         [TestMethod]
         public void IsNotLetter()
@@ -116,11 +94,15 @@ namespace CheckIdentifierTests
             char ch = '4';
 
             //act
-            bool right = Program.IsEnglishLetter(ch);
+            bool result = Program.IsEnglishLetter(ch);
 
             //assert
-            Assert.IsFalse(right);
+            Assert.IsFalse(result);
         }
+    }
+    [TestClass]
+    public class IsDigitTests
+    {
         [TestMethod]
         public void IsDigit()
         {
@@ -128,10 +110,10 @@ namespace CheckIdentifierTests
             char ch = '4';
 
             //act
-            bool right = Program.IsDigit(ch);
+            bool result = Program.IsDigit(ch);
 
             //assert
-            Assert.IsTrue(right);
+            Assert.IsTrue(result);
         }
         [TestMethod]
         public void IsNotDigit()
@@ -140,10 +122,10 @@ namespace CheckIdentifierTests
             char ch = 'A';
 
             //act
-            bool right = Program.IsDigit(ch);
+            bool result = Program.IsDigit(ch);
 
             //assert
-            Assert.IsFalse(right);
+            Assert.IsFalse(result);
         }
     }
 }

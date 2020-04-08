@@ -12,30 +12,23 @@ namespace CheckIdentifier
         {
             return (ch >= '0' && ch <= '9');
         }
-
-        public static int Main(string[] args)
+        public static bool CheckIdentifier(string identifier)
         {
-            if (args.Length != 1)
+            if (identifier.Length > 0)
             {
-                Console.WriteLine("Wrong parameters count");
-                return 1;
-            }
-            string inputString = args[0];
-            if (inputString.Length > 0)
-            {
-                if (IsDigit(inputString[0]))
+                if (IsDigit(identifier[0]))
                 {
                     Console.WriteLine("no");
                     Console.WriteLine("identifier cannot start with a digit");
-                    return 1;
+                    return false;
                 }
-                for (int i = 1; i < inputString.Length; i++)
+                for (int i = 1; i < identifier.Length; i++)
                 {
-                    if (!IsEnglishLetter(inputString[i]) && !IsDigit(inputString[i]))
+                    if (!IsEnglishLetter(identifier[i]) && !IsDigit(identifier[i]))
                     {
                         Console.WriteLine("no");
                         Console.WriteLine("identifier must contain only letters or numbers");
-                        return 1;
+                        return false;
                     }
                 }
             }
@@ -43,9 +36,25 @@ namespace CheckIdentifier
             {
                 Console.WriteLine("no");
                 Console.WriteLine("Empty string is not identifier");
-                return 1;
+                return false;
             }
             Console.WriteLine("yes");
+            return true;
+        }
+        static int Main(string[] args)
+        {
+            if (args.Length != 1)
+            {
+                Console.WriteLine("Wrong parameters count");
+                return 1;
+            }
+
+            string inputString = args[0];
+
+            if (!CheckIdentifier(inputString))
+            {
+                return 1;
+            }
             return 0;
         }
     }
